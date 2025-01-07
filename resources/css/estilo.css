@@ -1,69 +1,150 @@
-html,
-body {
+/* Reset de margens e padding para o layout */
+html, body {
     height: 100%;
+    margin: 0;
+    padding: 0;
 }
 
+/* Corpo da página - fundo vermelho, centralização do conteúdo */
 body {
-    display: -ms-flexbox;
-    /* Para suporte no IE */
     display: flex;
-    /* Flexbox moderno */
-    -ms-flex-align: center;
-    /* Alinhamento no IE */
     align-items: center;
-    /* Alinhamento no centro vertical */
     justify-content: center;
-    /* Alinhamento no centro horizontal */
-    padding-top: 40px;
-    padding-bottom: 40px;
-    background-color: #f8f9fa;
-    /* Definindo uma cor de fundo padrão */
+    flex-direction: column; /* Coloca os itens em coluna, um abaixo do outro */
+    padding: 0;
+    background-color: #ff0000; /* Cor de fundo vermelha */
+    font-family: 'Arial', sans-serif;
 }
 
-.imagem {
-    text-align: center;
+/* Contêiner principal */
+.container {
+    width: 100%;
+    max-width: 1200px; /* Limita a largura máxima */
+    padding: 20px;
+    margin: 0 auto;
+    box-sizing: border-box; /* Para garantir que o padding não quebre o layout */
 }
 
+/* Ajustes gerais para os títulos e outras partes do conteúdo */
+h1 {
+    color: #333;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px; /* Espaço entre o título e o próximo conteúdo */
+}
+
+p {
+    font-size: 16px;
+    color: #333;
+    margin-top: 0; /* Garante que não haja margem superior indesejada */
+    margin-bottom: 20px; /* Adiciona um espaçamento inferior ao parágrafo */
+}
+
+/* Estilo para a tabela - maximizar largura e adicionar uma cor de fundo leve */
+.table-responsive {
+    max-height: 500px; /* Limita a altura da tabela */
+    overflow-y: auto; /* Ativa a rolagem vertical se necessário */
+    overflow-x: auto; /* Ativa a rolagem horizontal se necessário */
+    margin-top: 20px; /* Espaço superior para separar da descrição */
+    border-radius: 8px; /* Bordas arredondadas para o contêiner da tabela */
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); /* Sombra suave ao redor da tabela */
+}
+
+/* Estilo da tabela */
+.table {
+    width: 100%;
+    table-layout: auto; /* Ajusta automaticamente as colunas para o conteúdo */
+    border-collapse: collapse; /* Remove o espaço entre células */
+}
+
+/* Estilo das células da tabela */
+.table th, .table td {
+    text-align: center; /* Centraliza o texto nas células */
+    padding: 12px; /* Espaço interno nas células */
+    border-bottom: 1px solid #ddd; /* Linha sutil para separar as linhas */
+    word-wrap: break-word; /* Quebra palavras longas que não cabem na célula */
+    white-space: normal; /* Garante que o conteúdo não fique em uma única linha */
+}
+
+/* Cabeçalho da tabela */
+.table th {
+    background-color: #f8f9fa; /* Cor de fundo suave para cabeçalhos */
+    color: #333; /* Cor de texto escuro */
+    font-weight: bold; /* Negrito para os títulos das colunas */
+}
+
+/* Estilo para cada linha de dados */
+.table tr:nth-child(even) {
+    background-color: #f2f2f2; /* Linha alternada para melhorar a legibilidade */
+}
+
+.table tr:hover {
+    background-color: #e9ecef; /* Destaque suave ao passar o mouse */
+}
+
+/* Estilo para os botões */
+.btn {
+    width: 100%;
+    padding: 15px;
+    background-color: #ff0000; /* Cor de fundo vermelha */
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #3a0000; /* Cor mais escura ao passar o mouse */
+}
+
+.btn:active {
+    background-color: #ff0000; /* Cor ao clicar no botão */
+}
+
+/* Formulário de login com largura aumentada */
 .form-signin {
     width: 100%;
-    max-width: 330px;
-    padding: 15px;
-    margin: auto;
+    max-width: 600px; /* Aumentando a largura máxima do formulário */
+    padding: 40px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
 
+/* Ajuste no tamanho do texto dentro do formulário */
 .texto {
-    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 30px;
 }
 
-.form-signin .form-control {
-    position: relative;
-    box-sizing: border-box;
-    height: auto;
-    padding: 10px;
-    font-size: 16px;
+/* Ajustes gerais para o layout */
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    min-height: 100vh;
 }
 
-.form-signin .form-control:focus {
-    z-index: 2;
-}
-
-.form-signin input[type="number"] {
-    margin-bottom: -1px;
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
-}
-
-.form-signin .btn {
-    width: 100%;
-    padding: 15px;
-    margin: auto;
-    display: inline-block;
-    text-align: center;
-}
-
-.form-signin .mt-5 {
-    width: 100%;
-    padding: 15px;
-    margin: auto;
-    text-align: center;
+/* Ajustes responsivos para telas menores (mobile) */
+@media (max-width: 768px) {
+    .form-signin {
+        max-width: 100%; /* Ajusta o formulário para ocupar 100% da largura em telas menores */
+        padding: 20px;
+    }
+    .container {
+        padding: 10px; /* Reduz o padding no contêiner em telas menores */
+    }
+    .btn {
+        font-size: 16px; /* Ajusta o tamanho da fonte do botão em telas menores */
+    }
+    .table-responsive {
+        max-height: 400px; /* Diminui a altura máxima da tabela em telas pequenas */
+    }
+    h1 {
+        font-size: 20px; /* Ajusta o tamanho do título em telas menores */
+    }
 }

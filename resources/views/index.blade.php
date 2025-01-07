@@ -1,55 +1,41 @@
 @extends('layout')
 
 @section('content')
-<div class="form-container">
-    <form class="form-signin" action="{{ route('calcular') }}" method="POST">
-        @csrf
-        <div class="texto">
-            <h1 class="h3 mb-3 font-weight-normal">Calcular juros ao mês</h1>
-        </div>
-
-        <!-- Campo Capital Inicial -->
-        <label for="capital" class="sr-only">Capital inicial: R$</label>
-        <input 
-            type="number" 
-            id="capital" 
-            class="form-control" 
-            name="capital" 
-            placeholder="100.00" 
-            min="10" 
-            required 
-            autofocus>
-        
-        <!-- Campo Taxa Fixa -->
-        <label for="taxa" class="sr-only">Taxa fixa: %</label>
-        <input 
-            type="number" 
-            id="taxa" 
-            class="form-control" 
-            name="taxa" 
-            placeholder="10" 
-            min="1" 
-            required>
-        
-        <!-- Campo Período de Tempo -->
-        <label for="periodo" class="sr-only">Período de tempo: (meses)</label>
-        <input 
-            type="number" 
-            id="periodo" 
-            class="form-control" 
-            name="periodo" 
-            placeholder="3" 
-            min="1" 
-            required>
-        
-        <!-- Botão Calcular -->
-        <button 
-            class="btn btn-lg btn-primary btn-block" 
-            type="submit">
-            Calcular
-        </button>
-
-        <p class="mt-5 mb-3 text-muted">&copy; 2023</p>
-    </form>
+<div class="container">
+    <div class="form-signin">
+        <h1 class="texto mb-4">Faça a Simulação</h1>
+        <form method="POST" action="{{ route('calcular') }}">
+            @csrf
+            <div class="mb-3">
+                <label for="nome" class="form-label">Nome Completo</label>
+                <input type="text" class="form-control @error('nome') is-invalid @enderror" id="nome" name="nome" required>
+                @error('nome')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="mb-3">
+                <label for="valor_emprestimo" class="form-label">Valor do Empréstimo</label>
+                <input type="number" step="0.01" class="form-control @error('valor_emprestimo') is-invalid @enderror" id="valor_emprestimo" name="valor_emprestimo" required>
+                @error('valor_emprestimo')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="mb-3">
+                <label for="taxa_juros" class="form-label">Taxa de Juros (%)</label>
+                <input type="number" step="0.01" class="form-control @error('taxa_juros') is-invalid @enderror" id="taxa_juros" name="taxa_juros" required>
+                @error('taxa_juros')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="mb-3">
+                <label for="quantidade_parcelas" class="form-label">Quantidade de Parcelas</label>
+                <input type="number" class="form-control @error('quantidade_parcelas') is-invalid @enderror" id="quantidade_parcelas" name="quantidade_parcelas" required>
+                @error('quantidade_parcelas')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Calcular Empréstimo</button>
+        </form>
+    </div>
 </div>
 @endsection

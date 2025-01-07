@@ -8,4 +8,4 @@ Route::get('/', function () {
 });
 
 // Rota para calcular os juros
-Route::post('/calcular', [App\Http\Controllers\ControllerCalculo::class, 'Calcular'])->name('calcular');
+Route::post('/calcular', [App\Http\Controllers\controllerCalculo::class, 'calcular'])->name('calcular');

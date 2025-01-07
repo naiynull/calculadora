@@ -1,23 +1,35 @@
 @extends('layout')
 
 @section('content')
-<div class="texto">
-    <h2>Cálculo efetuado</h2>
+<div class="container">
+<h1>Resultados para {{ $nome }}</h1>
+<h1>           </h1>
+<h4>Valor do Empréstimo: R$ {{ number_format($emprestimo, 2) }}</h4>
+    <div class="table-responsive"> <!-- Adicionando a classe table-responsive aqui -->
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Parcela</th>
+                    <th>Valor Atualizado</th>
+                    <th>Juros</th>
+                    <th>Valor da Parcela</th>
+                    <th>Restante</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($resultados as $resultado)
+                <tr>
+                    <td>{{ $resultado['parcela'] }}</td>
+                    <td>R$ {{ $resultado['valor_atualizado'] }}</td>
+                    <td>R$ {{ $resultado['juros'] }}</td>
+                    <td>R$ {{ $resultado['valor_parcela'] }}</td>
+                    <td>R$ {{ $resultado['restante'] }}</td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+    <p>Total Pago: R$ {{ $totalPago }}</p>
 </div>
-
-<div class="row">
-    <div class="col-md-3">Mês</div>
-    <div class="col-md-6">Valor inicial</div>
-    <div class="col-md-3">Valor atualizado</div>
-</div>
-
-@foreach ($dados as $item)
-<div class="row">
-    <div class="col-md-3">{{ $item["mes"] }}</div>
-    <div class="col-md-6">R$ {{ $item["capitalInicial"] }}</div>
-    <div class="col-md-3">R$ {{ $item["capitalAtualizado"] }}</div>
-</div>
-@endforeach
-
 <button onclick="window.location.href='/';" type="button" class="btn btn-lg btn-primary btn-block botao">Voltar</button>
 @endsection
